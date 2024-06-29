@@ -48,6 +48,7 @@ def Your_score(score):
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
     screen.blit(mesg, [width / 6, height / 3])
+
 #main game loop
 
 def gameLoop():
@@ -97,17 +98,21 @@ def gameLoop():
                 game_over = True  #quit game
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    x1_change = -snake_block
-                    y1_change = 0
+                    if x1_change == 0:  #only change direction if not moving horizontally
+                        x1_change = -snake_block
+                        y1_change = 0
                 elif event.key == pygame.K_RIGHT:
-                    x1_change = snake_block
-                    y1_change = 0
+                    if x1_change == 0:  #only change direction if not moving horizontally
+                        x1_change = snake_block
+                        y1_change = 0
                 elif event.key == pygame.K_UP:
-                    y1_change = -snake_block
-                    x1_change = 0
+                    if y1_change == 0:  #only change direction if not moving vertically
+                        y1_change = -snake_block
+                        x1_change = 0
                 elif event.key == pygame.K_DOWN:
-                    y1_change = snake_block
-                    x1_change = 0
+                    if y1_change == 0:  #only change direction if not moving vertically
+                        y1_change = snake_block
+                        x1_change = 0
 
         #check if snake hits the boundaries
         if x1 >= width or x1 < 0 or y1 >= height or y1 < 0:
